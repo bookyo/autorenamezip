@@ -1,0 +1,41 @@
+# 智能排序->自动重命名->自动按照第一级子文件夹名打包成7z
+
+假如文件夹：d://downloads/jobs
+
+其中有子文件夹：
+- d://downloads/jobs/aaa
+- d://downloads/jobs/bbb
+- d://downloads/jobs/ccc
+- d://downloads/jobs/ddd
+- d://downloads/jobs/eee
+- d://downloads/jobs/fff
+
+假如aaa文件夹中文件名如下：
+
+- 爱上你就是爱上我1-23abjkjk.jpg
+- 爱上你就是爱上我2-23abjkjk.jpg
+- 爱上你就是爱上我3-23abjkjk.jpg
+- 爱上你就是爱上我4-23abjkjk.jpg
+- 爱上你就是爱上我5-23abjkjk.jpg
+- 爱上你就是爱上我6-23abjkjk.jpg
+- 爱上你就是爱上我7-23abjkjk.jpg
+- 爱上你就是爱上我8-23abjkjk.jpg
+- 爱上你就是爱上我9-23abjkjk.jpg
+- 爱上你就是爱上我10-23abjkjk.jpg
+- 爱上你就是爱上我11-23abjkjk.jpg
+
+如果按照常规排序，则会变成：1，10，11,2,3,4类似这样，这个不符合我们的要求。
+
+于是就有了这个工具，可批量处理文件夹中所有子文件夹中的文件排序问题，并且重命名成0001 0002 0003 0004等。
+
+最后再根据第一级子文件夹名打包成7z到源码目录，最后的结果：
+- aaa.7z
+- bbb.7z
+- ccc.7z
+...
+
+并且其中的文件名已经重命名！！！！对于处理图包，并且打包上传效率极高！
+
+使用方法：修改index.js中rootPath，将父文件夹名填充于此，例如上面案例中的d://downloads/jobs。
+
+如果其中所有子文件数超过9999，则可修改55行4改成5或其他。
