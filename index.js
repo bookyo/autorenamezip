@@ -4,8 +4,9 @@ const path = require('path');
 const sevenBin = require('7zip-bin');
 const node7z = require('node-7z');
 const pathTo7zip = sevenBin.path7za;
+const nanoid = require('nanoid');
 
-const rootPath = ''; //把父文件夹地址填充于此！
+const rootPath = 'D:/gMKVExtractGUI.v2.6.2/jkjklgejgklejgklegjkelgjeklgjeklgjeklgjeklg'; //把父文件夹地址填充于此！
 
 function rename(p, s) {
   let files = walk(p);
@@ -33,7 +34,19 @@ function zip(s) {
           console.log(dirname);
           /* Recurse into a subdirectory */
           results = walk(file);
-          const myStream = node7z.add('./' + dirname + '.7z', results, {
+          const id = nanoid.nanoid();
+          const tmp = './' + id;
+          if(!fs.existsSync(tmp)) {
+            fs.mkdirSync('./' + id);
+          }
+          let newTmpArr = [];
+          for (let index = 0; index < results.length; index++) {
+            const file = results[index];
+            const filename = path.basename(file);
+            fs.copyFileSync(file, tmp + '/' + filename);
+            newTmpArr.push(tmp + '/' + filename);
+          }
+          const myStream = node7z.add('./' + dirname + '.7z', newTmpArr, {
             recursive: true,
             $bin: pathTo7zip
           });
