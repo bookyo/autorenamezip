@@ -6,7 +6,7 @@ const node7z = require('node-7z');
 const pathTo7zip = sevenBin.path7za;
 const nanoid = require('nanoid');
 
-const rootPath = 'D:/gMKVExtractGUI.v2.6.2/jkjklgejgklejgklegjkelgjeklgjeklgjeklgjeklg'; //把父文件夹地址填充于此！
+const rootPath = 'D:/BaiduNetdiskDownload/F5275-斗罗金主定制-小舞和阿银被侵犯怀孕'; //把父文件夹地址填充于此！
 
 function rename(p, s) {
   let files = walk(p);
@@ -46,7 +46,7 @@ function zip(s) {
             fs.copyFileSync(file, tmp + '/' + filename);
             newTmpArr.push(tmp + '/' + filename);
           }
-          const myStream = node7z.add('./' + dirname + '.7z', newTmpArr, {
+          const myStream = node7z.add('./' + dirname + '.7z', tmp, {
             recursive: true,
             $bin: pathTo7zip
           });
@@ -65,7 +65,7 @@ function zip(s) {
 
 // zip("");
 
-rename(rootPath, 4);
+rename(rootPath, 5);
 
 function walk(dir) {
   var results = [];
