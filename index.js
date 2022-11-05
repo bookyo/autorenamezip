@@ -6,7 +6,7 @@ const node7z = require('node-7z');
 const pathTo7zip = sevenBin.path7za;
 const nanoid = require('nanoid');
 
-const rootPath = 'D:/BaiduNetdiskDownload/F5275-斗罗金主定制-小舞和阿银被侵犯怀孕'; //把父文件夹地址填充于此！
+const rootPath = 'D:/BaiduNetdiskDownload/[3D韩国画师]DecalShooter大佬画师 极品丝袜'; //把父文件夹地址填充于此！
 
 function rename(p, s) {
   let files = walk(p);
