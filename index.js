@@ -6,7 +6,7 @@ const node7z = require('node-7z');
 const pathTo7zip = sevenBin.path7za;
 const nanoid = require('nanoid');
 
-const rootPath = 'D:/BaiduNetdiskDownload/[エロマズン (まー九郎)] 鬼滅の刃 系列'; //把父文件夹地址填充于此！
+const rootPath = 'D:/BaiduNetdiskDownload/蝴蝶之殇/蝴蝶之殇第二季'; //把父文件夹地址填充于此！
 
 function rename(p, s) {
   let files = walk(p);

@@ -2,7 +2,7 @@ const sharp = require('sharp');
 const fs = require('fs');
 const path = require('path');
 
-const rootPath = 'D:/BaiduNetdiskDownload/[エロマズン (まー九郎)] 鬼滅の刃 系列'; //把父文件夹地址填充于此！
+const rootPath = 'D:/BaiduNetdiskDownload/[翠野タヌキ]'; //把父文件夹地址填充于此！
 
 async function compress() {
   let files = walk(rootPath);
@@ -18,6 +18,9 @@ async function compress() {
       fs.unlinkSync(file);
     } else {
       if (metadata.format == 'png') {
+        await sharp(file).toFile(dirname + '/' + filename + '_compress.jpg');
+        fs.unlinkSync(file);
+      } else if (metadata.format == 'webp') {
         await sharp(file).toFile(dirname + '/' + filename + '_compress.jpg');
         fs.unlinkSync(file);
       } else {
