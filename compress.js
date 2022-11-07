@@ -2,7 +2,7 @@ const sharp = require('sharp');
 const fs = require('fs');
 const path = require('path');
 
-const rootPath = 'D:/BaiduNetdiskDownload/[翠野タヌキ]'; //把父文件夹地址填充于此！
+const rootPath = 'C:/Users/xiezixing/Downloads/Asis/S021/S021 全中文字幕'; //把父文件夹地址填充于此！
 
 async function compress() {
   let files = walk(rootPath);
@@ -13,12 +13,13 @@ async function compress() {
     const extname = path.extname(file);
     const filename = path.basename(file, extname);
     const dirname = path.dirname(file);
+    sharp.cache(false);
     if (metadata.width > 1920) {
       await sharp(file).resize({width: 1920}).toFile(dirname + '/' + filename + '_compress.jpg');
       fs.unlinkSync(file);
     } else {
       if (metadata.format == 'png') {
-        await sharp(file).toFile(dirname + '/' + filename + '_compress.jpg');
+        await sharp(file).toFile(dirname + '/' + filename + '_compress.jpg');    
         fs.unlinkSync(file);
       } else if (metadata.format == 'webp') {
         await sharp(file).toFile(dirname + '/' + filename + '_compress.jpg');
