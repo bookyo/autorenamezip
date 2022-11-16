@@ -2,34 +2,46 @@ const sharp = require('sharp');
 const fs = require('fs');
 const path = require('path');
 
-const rootPath = 'C:/Users/xiezixing/Downloads/Asis/S021/S021 全中文字幕'; //把父文件夹地址填充于此！
+const rootPath = "C:/Users/xiezixing/Downloads/更"; //把父文件夹地址填充于此！
 
 async function compress() {
   let files = walk(rootPath);
   for (let index = 0; index < files.length; index++) {
     const file = files[index];
     const stat = fs.statSync(file);
-    const metadata = await sharp(file).metadata();
+    const metadata = await sharp(file).metadata().catch((err) => {
+      console.log(err);
+      console.log(file);
+    });
     const extname = path.extname(file);
     const filename = path.basename(file, extname);
     const dirname = path.dirname(file);
     sharp.cache(false);
-    if (metadata.width > 1920) {
-      await sharp(file).resize({width: 1920}).toFile(dirname + '/' + filename + '_compress.jpg');
-      fs.unlinkSync(file);
-    } else {
-      if (metadata.format == 'png') {
-        await sharp(file).toFile(dirname + '/' + filename + '_compress.jpg');    
-        fs.unlinkSync(file);
-      } else if (metadata.format == 'webp') {
-        await sharp(file).toFile(dirname + '/' + filename + '_compress.jpg');
+    try {
+      if (metadata.width > 1920) {
+        await sharp(file).resize({width: 1920}).toFile(dirname + '/' + filename + '_compress.jpg');
         fs.unlinkSync(file);
       } else {
-        if ((stat.size / (1024 * 1000)) > 1) {
-          await sharp(file).jpeg({quality: 80}).toFile(dirname + '/' + filename + '_compress.jpg');
+        if (metadata.format == 'png') {
+          await sharp(file).toFile(dirname + '/' + filename + '_compress.jpg');    
           fs.unlinkSync(file);
+        } else if (metadata.format == 'webp') {
+          await sharp(file).toFile(dirname + '/' + filename + '_compress.jpg');
+          fs.unlinkSync(file);
+        } else if (metadata.format == 'jpeg') {
+          if(extname == '.webp') {
+            fs.renameSync(file, dirname + '/' + filename + '.jpg');
+          } else {
+            if ((stat.size / (1024 * 1000)) > 1) {
+              await sharp(file).jpeg({quality: 80}).toFile(dirname + '/' + filename + '_compress.jpg');
+              fs.unlinkSync(file);
+            }
+          }
         }
       }
+    } catch (error) {
+      console.log(error);
+      console.log(file);
     }
   }
 }
