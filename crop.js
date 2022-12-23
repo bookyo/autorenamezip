@@ -2,14 +2,14 @@ const fs = require('fs');
 const sharp = require('sharp');
 const path = require('path');
 
-const rootPath = 'C:/Users/xiezixing/Downloads/[韩漫全彩]虐美人 1-117話[完結]'; 
+const rootPath = 'D:/115下载/更/[韩漫全彩]looser失落者 36-74(完结)'; 
 
 async function crop() {
   const files = walk(rootPath);
   for (let index = 0; index < files.length; index++) {
     const file = files[index];
     // sharp.cache(false);
-    const metadata = await sharp(file).metadata();
+    const metadata = await sharp(file).metadata().catch((err) => console.log(file));
     if(metadata.height > 3000) {
       doCrop(file, metadata);
     }

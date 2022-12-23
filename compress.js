@@ -2,7 +2,7 @@ const sharp = require('sharp');
 const fs = require('fs');
 const path = require('path');
 
-const rootPath = "C:/Users/xiezixing/Downloads/更"; //把父文件夹地址填充于此！
+const rootPath = "D:/115下载/更"; //把父文件夹地址填充于此！
 
 async function compress() {
   let files = walk(rootPath);
