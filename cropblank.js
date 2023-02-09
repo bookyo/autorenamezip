@@ -2,7 +2,8 @@ const fs = require('fs');
 const sharp = require('sharp');
 const path = require('path');
 
-const rootPath = 'D:/115下载/更/[韩漫全彩}生物学的女性攻略法 生物學的女性攻略法[完结]'; 
+const rootPath = './images/[韩漫全彩}生物学的女性攻略法 生物學的女性攻略法[完结]'; 
+const wantCropWidth = 740;
 
 async function crop() {
   const files = walk(rootPath);
@@ -10,35 +11,24 @@ async function crop() {
     const file = files[index];
     // sharp.cache(false);
     const metadata = await sharp(file).metadata().catch((err) => console.log(file));
-    if(metadata.height > 3000) {
-      doCrop(file, metadata);
-    }
+    doCropBlank(file, metadata, wantCropWidth);
   }
 }
 
 crop();
 
-async function doCrop(file, metadata) {
-  const height = metadata.height;
+async function doCropBlank(file, metadata, wantCropWidth) {
   const extname = path.extname(file);
   const basename = path.basename(file, extname);
   const dirname = path.dirname(file);
-  let left = 0;
-  let top = 0;
-  let cropHeight = 3000;
-  let cropWidth = metadata.width;
-  let leftHeight = height;
-  const step = Math.ceil(height / 3000);
-  for (let index = 0; index < step; index++) {
+  const cropWidth = metadata.width - wantCropWidth;
+  const left = cropWidth / 2;
+  const top = 0;
+  const cropHeight = metadata.height;
+  if(left > 0) {
     await sharp(file)
-      .extract({left: left, top: top, width: cropWidth, height: cropHeight})
-      .toFile(dirname + '/' + basename + `_${index}.jpg`);
-    top = top + 3000;
-    leftHeight = leftHeight - 3000;
-    // console.log(leftHeight);
-    if(leftHeight < 3000) {
-      cropHeight = leftHeight;
-    }
+      .extract({left: left, top: top, width: wantCropWidth, height: cropHeight})
+      .toFile(dirname + '/' + basename + `_crop.jpg`);
   }
   fs.unlinkSync(file);
 }
