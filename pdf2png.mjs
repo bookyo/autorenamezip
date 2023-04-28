@@ -2,7 +2,7 @@ import { exportImages } from 'pdf-into-jpg'
 import path from 'path';
 import fs from 'fs';
 
-const rootPath = 'D:/115下载/[韩漫全彩}生物学的女性攻略法 生物學的女性攻略法[完结]'; 
+const rootPath = 'D:/115下载/[韩漫全彩]蝴蝶之梦 第一季 01-26[完结]'; 
 
 async function pdftoimg() {
   // await pdfToPng.pdfToPng(path, // The function accepts PDF file path or a Buffer

@@ -15,6 +15,14 @@ function test() {
   })
 }
 
+async function toGif(file) {
+  await sharp(file, { animated: true })
+    .toFile('1.gif');
+}
+
+toGif('./1.webp');
+
+
 async function testResize(file, originalWidth, width) {
   const cropWidth = originalWidth - width;
   const left = cropWidth / 2;
@@ -25,6 +33,6 @@ async function testResize(file, originalWidth, width) {
     .extract({left: left, top: top, width: width, height: cropHeight})
     .toFile(`test.jpg`);
 }
-testResize('./00001.jpg', 1920, 740);
+// testResize('./00001.jpg', 1920, 740);
 
 // test();

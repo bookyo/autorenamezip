@@ -2,8 +2,8 @@ const fs = require('fs');
 const sharp = require('sharp');
 const path = require('path');
 
-const rootPath = './images/[韩漫全彩}生物学的女性攻略法 生物學的女性攻略法[完结]'; 
-const wantCropWidth = 740;
+const rootPath = 'D:/115下载/更/[韩漫全彩]调教女大生 全完结'; 
+const wantCropWidth = 660;
 
 async function crop() {
   const files = walk(rootPath);
