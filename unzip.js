@@ -6,7 +6,7 @@ const node7z = require('node-7z');
 const pathTo7zip = sevenBin.path7za;
 const nanoid = require('nanoid');
 
-const rootPath = "D:/115下载/更"; //把父文件夹地址填充于此！
+const rootPath = "D:/115下载/更2"; //把父文件夹地址填充于此！
 
 function unzipAll() {
   const files = walk(rootPath);

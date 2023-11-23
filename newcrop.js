@@ -2,9 +2,9 @@ const fs = require('fs');
 const sharp = require('sharp');
 const path = require('path');
 
-const rootPath = 'D:/115下载/yixing/32'; 
-const wantCropWidth = 710;
-const wantLeft = 900;
+const rootPath = 'D:/115下载/[AI Generated] 私の母は最近変です我的妈妈最近很奇怪（中文）下[完整版]'; 
+const wantCropWidth = 645;
+const wantLeft = 393;
 
 async function crop() {
   const files = walk(rootPath);

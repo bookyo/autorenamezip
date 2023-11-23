@@ -2,7 +2,7 @@ const fs = require('fs');
 const sharp = require('sharp');
 const path = require('path');
 
-const rootPath = 'D:/115下载/更/[韩漫全彩]调教女大生 全完结'; 
+const rootPath = 'D:/115下载/[韩漫全彩]獠牙 獠牙 1-18[完结]'; 
 
 async function crop() {
   const files = walk(rootPath);
@@ -10,7 +10,7 @@ async function crop() {
     const file = files[index];
     // sharp.cache(false);
     const metadata = await sharp(file).metadata().catch((err) => console.log(file));
-    if(metadata.height > 3000) {
+    if(metadata.height > 4200) {
       doCrop(file, metadata);
     }
   }
@@ -25,18 +25,18 @@ async function doCrop(file, metadata) {
   const dirname = path.dirname(file);
   let left = 0;
   let top = 0;
-  let cropHeight = 3000;
+  let cropHeight = 4200;
   let cropWidth = metadata.width;
   let leftHeight = height;
-  const step = Math.ceil(height / 3000);
+  const step = Math.ceil(height / 4200);
   for (let index = 0; index < step; index++) {
     await sharp(file)
       .extract({left: left, top: top, width: cropWidth, height: cropHeight})
-      .toFile(dirname + '/' + basename + `_${index}.jpg`);
-    top = top + 3000;
-    leftHeight = leftHeight - 3000;
+      .toFile(dirname + '/' + basename + `_${index}.jpg`).catch((err) => console.log(file));
+    top = top + 4200;
+    leftHeight = leftHeight - 4200;
     // console.log(leftHeight);
-    if(leftHeight < 3000) {
+    if(leftHeight < 4200) {
       cropHeight = leftHeight;
     }
   }
