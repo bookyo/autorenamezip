@@ -2,7 +2,7 @@ const fs = require('fs');
 const sharp = require('sharp');
 const path = require('path');
 
-const rootPath = 'D:/115下载/[韩漫全彩]獠牙 獠牙 1-18[完结]'; 
+const rootPath = 'D:/115下载/更2/[韩漫全彩]透視!女子游泳部 1-13 完结'; 
 
 async function crop() {
   const files = walk(rootPath);

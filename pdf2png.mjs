@@ -2,7 +2,7 @@ import { exportImages } from 'pdf-into-jpg'
 import path from 'path';
 import fs from 'fs';
 
-const rootPath = 'D:/115下载/[韩漫全彩]危险同居 1-32[完结]'; 
+const rootPath = 'D:/115下载/[韩漫全彩]私生：爱到痴狂(01-24话) [完结]'; 
 
 async function pdftoimg() {
   // await pdfToPng.pdfToPng(path, // The function accepts PDF file path or a Buffer
