@@ -2,7 +2,7 @@ import { exportImages } from 'pdf-into-jpg'
 import path from 'path';
 import fs from 'fs';
 
-const rootPath = 'D:/115下载/[韩漫全彩]私生：爱到痴狂(01-24话) [完结]'; 
+const rootPath = 'D:/115下载/[韩漫全彩]王牌经纪人（01-42话）完结';
 
 async function pdftoimg() {
   // await pdfToPng.pdfToPng(path, // The function accepts PDF file path or a Buffer
@@ -21,7 +21,7 @@ async function pdftoimg() {
     const file = files[index];
     const extname = path.extname(file);
     const filename = path.basename(file, extname);
-    if(extname.toLocaleLowerCase() == '.pdf') {
+    if (extname.toLocaleLowerCase() == '.pdf') {
       console.log(file);
       const des = rootDir + '/' + filename;
       if (!fs.existsSync(des)) {
@@ -29,7 +29,7 @@ async function pdftoimg() {
       }
       exportImages(file, des)
         .then(images => console.log('Exported', images.length, 'images'))
-        .catch((err) => console.log('文件'+ file + '错误:' + err))
+        .catch((err) => console.log('文件' + file + '错误:' + err))
     }
   }
   // exportImages(path, 'images')
@@ -41,16 +41,16 @@ pdftoimg();
 function walk(dir) {
   var results = [];
   var list = fs.readdirSync(dir);
-  list.forEach(function(file) {
-      file = dir + '/' + file;
-      var stat = fs.statSync(file);
-      if (stat && stat.isDirectory()) { 
-          /* Recurse into a subdirectory */
-          results = results.concat(walk(file));
-      } else { 
-          /* Is a file */
-          results.push(file);
-      }
+  list.forEach(function (file) {
+    file = dir + '/' + file;
+    var stat = fs.statSync(file);
+    if (stat && stat.isDirectory()) {
+      /* Recurse into a subdirectory */
+      results = results.concat(walk(file));
+    } else {
+      /* Is a file */
+      results.push(file);
+    }
   });
   return results;
 }
