@@ -2,7 +2,7 @@ const Jimp = require('jimp');
 const jsQR = require('jsqr');
 const fs = require('fs');
 
-const rootPath = "D:/115下载/"; //把父文件夹地址填充于此！
+const rootPath = "D:/115下载/[Silver Dog] Shishou kara Osowatta Koto (Sousou no Frieren) [Chinese]"; //把父文件夹地址填充于此！
 
 function checkFiles() {
   let files = walk(rootPath);
@@ -40,8 +40,12 @@ async function checkForQRCode(imagePath) {
     const qrCode = jsQR(imageData, imageWidth, imageHeight);
 
     if (qrCode) {
-      console.log(imagePath + '二维码检测到：', qrCode.data);
-      return true; // 存在二维码
+      if (qrCode.data.indexOf('http') > -1) {
+        console.log(imagePath + '二维码检测到：', qrCode.data);
+        return true
+      } else {
+        return false
+      }
     } else {
       console.log('未检测到二维码');
       return false; // 不存在二维码
